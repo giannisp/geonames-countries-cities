@@ -1,0 +1,16 @@
+{
+  "name": "geonames-countries-cities",
+  "version": "0.0.1",
+  "description": "Output geonames countries and main cities on a single json file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "IP",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^2.9.25",
+    "byline": "^4.2.1",
+    "lodash": "^3.8.0"
+  }
+}
