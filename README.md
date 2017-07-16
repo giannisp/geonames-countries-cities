@@ -1,21 +1,26 @@
-## geonames-countries-cities
+# geonames-countries-cities
 
-Output geonames countries and main cities on a single json file
+## Description
 
-## Installation
+- Export geonames countries to JSON.  
+- Export combined geonames countries and main cities to JSON.
 
-1. `npm install`
-2. `mkdir {input,output}`
-3. [Download countryInfo.txt](http://download.geonames.org/export/dump/countryInfo.txt) and copy to `input` dir
-4. [Download cities15000.zip](http://download.geonames.org/export/dump/cities15000.zip), extract and copy to `input` dir
+## Requirements
 
-## Usage
+- NodeJS 6.x
 
-`node index.js`
+## Install
+
+`make`
+
+## Run
+
+`npm start`
 
 ## Customize output
 
-Edit `geonames.js`, comment/uncomment fields
+Comment/uncomment fields at `src/util/geonames.js`.  
+Please note that `country.name` and `city.asciiname` fields are used for sorting.
 
 ## Field info
 
