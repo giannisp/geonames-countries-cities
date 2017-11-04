@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const Promise = require('bluebird');
 const byline = require('byline');
 
 exports.getCountries = () => {

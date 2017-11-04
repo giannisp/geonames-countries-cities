@@ -1,44 +1,43 @@
 const fs = require('fs');
 const path = require('path');
-const find = require('lodash.find');
 const omit = require('lodash.omit');
 const sortBy = require('lodash.sortby');
+const { promisify } = require('util');
 
 const geonames = require('./util/geonames');
 
-geonames.getCountries()
-  .bind({})
-  .then((countries) => {
-    this.countries = sortBy(countries, 'name');
+const writeFile = promisify(fs.writeFile);
 
-    const filepath = path.join(__dirname, '../build/countries.json');
-    fs.writeFile(filepath, JSON.stringify({
-      countries: this.countries,
-    }, null, 2), 'utf8');
+const exportData = async (countries, filename) => {
+  const filepath = path.join(__dirname, `../build/${filename}`);
+  await writeFile(filepath, JSON.stringify({ countries }, null, 2), 'utf8');
 
-    console.log('Exported country data to build/countries.json');
+  console.log(`Exported data to build/${filename}`);
+};
 
-    return geonames.getCities();
-  })
-  .then((cities) => {
-    cities.forEach((city) => {
-      const country = find(this.countries, { iso: city.country_code });
-      if (!country.cities) {
-        country.cities = [];
-      }
-      country.cities.push(omit(city, ['country_code']));
-    });
+const run = async () => {
+  const rawCountries = await geonames.getCountries();
+  const countries = sortBy(rawCountries, 'name');
 
-    this.countries.forEach((country) => {
-      if (country.cities) {
-        country.cities = sortBy(country.cities, 'asciiname');
-      }
-    });
+  await exportData(countries, 'countries.json');
 
-    const filepath = path.join(__dirname, '../build/countries-with-cities.json');
-    fs.writeFile(filepath, JSON.stringify({
-      countries: this.countries,
-    }, null, 2), 'utf8');
-
-    console.log('Exported country/city data to build/countries-with-cities.json');
+  const cities = await geonames.getCities();
+  cities.forEach((city) => {
+    // eslint-disable-next-line no-shadow
+    const country = countries.find(country => country.iso === city.country_code);
+    if (!country.cities) {
+      country.cities = [];
+    }
+    country.cities.push(omit(city, ['country_code']));
   });
+
+  countries.forEach((country) => {
+    if (country.cities) {
+      country.cities = sortBy(country.cities, 'asciiname');
+    }
+  });
+
+  await exportData(countries, 'countries-with-cities.json');
+};
+
+run();
