@@ -7,7 +7,7 @@
 
 ## Requirements
 
-- NodeJS 8.10.x
+- NodeJS 8.11.x
 
 ## Install
 

@@ -12,7 +12,7 @@
   "author": "Ioannis Poulakas",
   "license": "MIT",
   "engines": {
-    "node": "8.10.0"
+    "node": "8.11.1"
   },
   "dependencies": {
     "byline": "^5.0.0",
