@@ -20,8 +20,8 @@
     "lodash.sortby": "^4.7.0"
   },
   "devDependencies": {
-    "eslint": "^4.13.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.3.0"
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }
