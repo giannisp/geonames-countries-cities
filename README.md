@@ -7,7 +7,7 @@
 
 ## Requirements
 
-- NodeJS 10.14.x
+- NodeJS 10.x
 
 ## Install
 
