@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const omit = require('lodash.omit');
 const sortBy = require('lodash.sortby');
 const { promisify } = require('util');
 
@@ -22,21 +21,25 @@ const run = async () => {
   await exportData(countries, 'countries.json');
 
   const cities = await geonames.getCities();
-  cities.forEach(city => {
-    const country = countries.find(({ iso }) => iso === city.country_code);
-    if (!country.cities) {
-      country.cities = [];
-    }
-    country.cities.push(omit(city, ['country_code']));
-  });
 
-  countries.forEach(country => {
-    if (country.cities) {
-      country.cities = sortBy(country.cities, 'asciiname');
-    }
-  });
+  const countriesWithCities = countries.reduce((result, country) => {
+    const countryCities = cities.filter(
+      ({ country_code: countryCode }) => countryCode === country.iso,
+    );
 
-  await exportData(countries, 'countries-with-cities.json');
+    return [
+      ...result,
+      {
+        ...country,
+        cities: sortBy(
+          countryCities.map(({ name, asciiname }) => ({ name, asciiname })),
+          'asciiname',
+        ),
+      },
+    ];
+  }, []);
+
+  await exportData(countriesWithCities, 'countries-with-cities.json');
 };
 
 run();
