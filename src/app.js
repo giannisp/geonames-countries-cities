@@ -22,16 +22,15 @@ const run = async () => {
   await exportData(countries, 'countries.json');
 
   const cities = await geonames.getCities();
-  cities.forEach((city) => {
-    // eslint-disable-next-line no-shadow
-    const country = countries.find(country => country.iso === city.country_code);
+  cities.forEach(city => {
+    const country = countries.find(({ iso }) => iso === city.country_code);
     if (!country.cities) {
       country.cities = [];
     }
     country.cities.push(omit(city, ['country_code']));
   });
 
-  countries.forEach((country) => {
+  countries.forEach(country => {
     if (country.cities) {
       country.cities = sortBy(country.cities, 'asciiname');
     }
