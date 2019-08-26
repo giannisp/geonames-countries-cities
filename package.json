@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/app.js",
     "test": "",
-    "lint": "eslint src/*.js src/**/*.js"
+    "eslint": "eslint src/*.js src/**/*.js"
   },
   "author": "Ioannis Poulakas",
   "license": "MIT",
