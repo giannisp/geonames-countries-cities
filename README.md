@@ -2,12 +2,12 @@
 
 ## Description
 
-- Export geonames countries to JSON.  
-- Export combined geonames countries and main cities to JSON.
+-   Export geonames countries to JSON.
+-   Export combined geonames countries and main cities to JSON.
 
 ## Requirements
 
-- NodeJS 10.x
+-   NodeJS 12.x
 
 ## Install
 
