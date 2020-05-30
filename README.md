@@ -4,6 +4,25 @@
 
 -   Export geonames countries to JSON.
 -   Export combined geonames countries and main cities to JSON.
+-   Run your own microservice quickly, for country and cities.
+
+## To run a quick microservice
+
+```sh
+
+docker-compose up
+
+```
+
+## URL
+
+**/countries**
+
+Gives the list of all the countries
+
+**/country/:countryId**
+
+Give you the details of cities within a country.
 
 ## Requirements
 

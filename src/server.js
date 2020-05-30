@@ -9,11 +9,6 @@ const fastify = require('fastify')({
 });
 fastify.register(require('fastify-compress'));
 
-// Declare a route
-fastify.get('/', (request, reply) => {
-  reply.send({ hello: 'world' });
-});
-
 const readFile = promisify(fs.readFile);
 
 const readPath = async filename => {
