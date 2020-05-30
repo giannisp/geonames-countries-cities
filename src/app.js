@@ -32,7 +32,11 @@ const run = async () => {
       {
         ...country,
         cities: sortBy(
-          countryCities.map(({ name, asciiname }) => ({ name, asciiname })),
+          countryCities.map(({ id, name, asciiname }) => ({
+            id,
+            name,
+            asciiname,
+          })),
           'asciiname',
         ),
       },
