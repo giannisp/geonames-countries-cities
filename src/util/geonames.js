@@ -3,14 +3,14 @@ const path = require('path');
 const byline = require('byline');
 
 exports.getCountries = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const countries = [];
     const filepath = path.join(__dirname, '../../data/countryInfo.txt');
 
     const stream = byline(fs.createReadStream(filepath, { encoding: 'utf8' }));
 
     stream
-      .on('data', line => {
+      .on('data', (line) => {
         if (line.startsWith('#')) {
           return;
         }
@@ -44,14 +44,14 @@ exports.getCountries = () => {
 };
 
 exports.getCities = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const cities = [];
     const filepath = path.join(__dirname, '../../data/cities15000.txt');
 
     const stream = byline(fs.createReadStream(filepath, { encoding: 'utf8' }));
 
     stream
-      .on('data', line => {
+      .on('data', (line) => {
         if (line.startsWith('#')) {
           return;
         }
