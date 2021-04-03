@@ -7,7 +7,7 @@
 
 ## Requirements
 
--   NodeJS 12.x
+-   NodeJS 14.x
 
 ## Install
 
